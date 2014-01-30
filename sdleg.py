@@ -82,6 +82,7 @@ for url in bill_links:
 f.flush()
 f.close()
 
+
 """
 k = open('lookup.txt','wb')
 
