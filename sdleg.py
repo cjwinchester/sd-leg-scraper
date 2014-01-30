@@ -84,17 +84,6 @@ f.close()
 
 
 """
-k = open('lookup.txt','wb')
-
-full = list(set(full))
-
-for thing in full:
-   rec = (thing,'\n')
-   k.write(''.join(rec))
-
-k.flush()
-k.close()
-
 # get list of urls for legislator mugs
 
 j = open('sd-leg-mugs.txt','wb')
@@ -124,13 +113,13 @@ for link in full_list:
     html = page.read()
     soup = BeautifulSoup(html)
     name = soup.find('h3', {'id':'ContentPlaceHolder1_hdMember'}).get_text(strip=True).replace("  "," ").replace("Representative", "Rep.").replace("Senator", "Sen.")
-    party = soup.find('span', {'id': 'ContentPlaceHolder1_spanParty'}).get_text(strip=True)
+    print name
     district = soup.find('span', {'id': 'ContentPlaceHolder1_spanDistrict'}).get_text(strip=True)
     
     pic = soup.findAll('img', {'id': 'ContentPlaceHolder1_imgMember'})
     for m in pic:
         mug = 'http://legis.sd.gov' + m['src']
-    rec = (name,mug,party,'\n')
+    rec = (name,mug,'\n')
     j.write('|'.join(rec))
     mech.back()
     sleep(1)
